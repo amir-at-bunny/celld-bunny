@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "celld-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--logs"],
+      "port": 9876
+    },
+    {
+      "name": "celld-bunny-node",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "node"],
+      "port": 8080
+    }
+  ]
+}

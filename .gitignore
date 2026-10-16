@@ -1,0 +1,7 @@
+.env
+.env.*
+.dev.vars
+.celld/
+node_modules/
+.bunny/app.json
+!.env.bunny.example

@@ -1,0 +1,40 @@
+{
+  "version": "2026-05-11",
+  "app": {
+    "name": "celld-rooms",
+    "containers": {
+      "celld": {
+        // Non-secret settings. AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY are set
+        // with `bunny apps env set` so they never land in this file.
+        "env": {
+          "CELLD_BUCKET": "s3://celld-bunny/fleet",
+          "S3_ENDPOINT": "https://de-s3.storage.bunnycdn.com",
+          "AWS_REGION": "de"
+        },
+        "endpoints": [
+          {
+            "type": "cdn",
+            "ssl": false,
+            "ports": [{ "public": 80, "container": 8080 }]
+          }
+        ],
+        // CELLD_WATCH: the node's local SQLite/replication directory.
+        "volumes": [
+          {
+            "name": "celld-data",
+            "mount": "/data",
+            "size": 2
+          }
+        ],
+        "dockerfile": "Dockerfile"
+      }
+    },
+    // One node: no peers to reach, so every write is acknowledged only after
+    // it reaches the bucket. Scaling past 1 needs instances to reach each
+    // other on a private address (celld's internal listener), not set up here.
+    "scaling": { "min": 1, "max": 1 },
+    // Same region as the celld-bunny storage zone (de-s3).
+    "regions": ["DE"]
+  },
+  "$schema": "./node_modules/@bunny.net/config/generated/schema.json"
+}

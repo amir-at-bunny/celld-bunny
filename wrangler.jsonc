@@ -1,0 +1,10 @@
+{
+  "name": "celld-bunny",
+  "main": "src/index.js",
+  "compatibility_date": "2026-01-01",
+  "durable_objects": {
+    // env.ROOMS is a namespace; each room name maps to one Room instance (a "cell").
+    "bindings": [{ "name": "ROOMS", "class_name": "Room" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room"] }]
+}

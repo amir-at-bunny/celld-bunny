@@ -1,0 +1,15 @@
+{
+  "name": "celld-bunny",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "celld dev",
+    "deploy": "set -a && . ./.env.bunny && set +a && celld deploy .",
+    "node": "set -a && . ./.env.bunny && set +a && celld",
+    "deploy:mc": "DOCKER_DEFAULT_PLATFORM=linux/amd64 bunny apps deploy",
+    "cells":"set -a && . ./.env.bunny && set +a && celld cell list"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
